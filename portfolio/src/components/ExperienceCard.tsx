@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ExternalLink, MapPin, Calendar } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X, Calendar, MapPin, ArrowRight } from "lucide-react";
 import { Experience } from "@/data/experience";
 
 interface ExperienceCardProps {
@@ -14,116 +15,307 @@ export default function ExperienceCard({
   experience,
   index,
 }: ExperienceCardProps) {
+  const [open, setOpen] = useState(false);
+
+  // Prevent page scrolling while modal is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
+  // Close modal with Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
+
   return (
-    <motion.article
-      initial={{
-        opacity: 0,
-        y: 40,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-      }}
-      whileHover={{
-        y: -8,
-      }}
-      className="group relative min-w-[360px] max-w-[360px] rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:border-[#ED254E]/60 hover:bg-white/10"
-    >
-      {/* Timeline Dot */}
+    <>
+      {/* Timeline Card */}
 
-      <div className="absolute -top-[14px] left-8 h-6 w-6 rounded-full border-4 border-[#05070A] bg-[#ED254E]" />
+      <motion.article
+        initial={{
+          opacity: 0,
+          y: 35,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        viewport={{
+          once: true,
+        }}
+        transition={{
+          delay: index * 0.1,
+          duration: 0.5,
+        }}
+        whileHover={{
+          y: -8,
+        }}
+        className={`
+          relative
+          flex
+          h-[330px]
+          w-[360px]
+          flex-col
+          rounded-3xl
+          border
+          p-7
+          transition-all
+          duration-300
 
-      {/* Logo */}
+          ${
+            experience.featured
+              ? "border-[#ED254E]/50 bg-[#ED254E]/5"
+              : "border-white/10 bg-white/5"
+          }
 
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
+          backdrop-blur-md
+          hover:border-[#ED254E]
+          hover:shadow-[0_18px_45px_rgba(237,37,78,.15)]
+        `}
+      >
+        {/* Timeline Dot */}
+
+        <div className="absolute -top-[17px] left-8">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border-4 border-[#011936] bg-[#ED254E]">
+            <div className="h-2.5 w-2.5 rounded-full bg-white" />
+          </div>
+        </div>
+
+        {/* Latest Badge */}
+
+        {experience.featured && (
+          <div className="absolute right-5 top-5 rounded-full bg-[#ED254E] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+            Latest
+          </div>
+        )}
+
+        {/* Logo */}
+
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-md">
           <Image
             src={experience.logo}
             alt={experience.company}
-            width={52}
-            height={52}
+            width={54}
+            height={54}
             className="h-auto w-full object-contain"
           />
         </div>
 
-        {experience.website && (
-          <a
-            href={experience.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-white/10 p-2 transition hover:border-[#ED254E] hover:text-[#ED254E]"
+        {/* Dates */}
+
+        <div className="mt-6 flex items-center gap-2 text-sm text-[#ED254E]">
+          <Calendar size={16} />
+          <span>
+            {experience.startDate} – {experience.endDate}
+          </span>
+        </div>
+
+        {/* Role */}
+
+        <h3 className="mt-4 font-[var(--font-display)] text-2xl font-bold leading-tight text-white">
+          {experience.role}
+        </h3>
+
+        {/* Company */}
+
+        <p className="mt-4 text-base font-medium text-white/80">
+          {experience.company}
+        </p>
+
+        {/* Location */}
+
+        <div className="mt-2 flex items-center gap-2 text-sm text-white/50">
+          <MapPin size={15} />
+          {experience.location}
+        </div>
+
+        {/* Duration */}
+
+        <p className="mt-2 text-sm text-white/40">
+          {experience.duration}
+        </p>
+
+        {/* Summary */}
+
+        <p className="mt-6 line-clamp-2 text-sm leading-7 text-white/65">
+          {experience.summary}
+        </p>
+
+        {/* Button */}
+
+        <button
+          onClick={() => setOpen(true)}
+          className="mt-auto flex items-center gap-2 font-medium text-[#ED254E] transition hover:translate-x-1"
+        >
+          More information
+
+          <ArrowRight size={16} />
+        </button>
+      </motion.article>
+
+      {/* ==================================================== */}
+      {/* MODAL */}
+      {/* ==================================================== */}
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-6 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
           >
-            <ExternalLink size={16} />
-          </a>
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 40,
+                scale: 0.96,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                y: 40,
+                scale: 0.96,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              onClick={(e) => e.stopPropagation()}
+              className="
+                relative
+                max-h-[90vh]
+                w-full
+                max-w-3xl
+                overflow-y-auto
+                rounded-3xl
+                border
+                border-[#ED254E]/30
+                bg-[#011936]
+                p-10
+                shadow-2xl
+              "
+            >
+              {/* Close */}
+
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition hover:bg-[#ED254E]"
+              >
+                <X size={18} />
+              </button>
+
+              {/* Header */}
+
+              <div className="flex items-center gap-6">
+                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white p-4">
+                  <Image
+                    src={experience.logo}
+                    alt={experience.company}
+                    width={70}
+                    height={70}
+                    className="object-contain"
+                  />
+                </div>
+
+                <div>
+                  <p className="font-[var(--font-doodle)] text-2xl text-[#ED254E]">
+                    {experience.company}
+                  </p>
+
+                  <h2 className="mt-2 text-3xl font-bold text-white">
+                    {experience.role}
+                  </h2>
+
+                  <p className="mt-3 text-white/60">
+                    {experience.startDate} – {experience.endDate} •{" "}
+                    {experience.location}
+                  </p>
+                </div>
+              </div>
+
+              {/* Overview */}
+
+              <section className="mt-10">
+                <h3 className="mb-4 text-xl font-semibold text-white">
+                  Overview
+                </h3>
+
+                <p className="leading-8 text-white/75">
+                  {experience.details.overview}
+                </p>
+              </section>
+
+              {/* Achievements */}
+
+              <section className="mt-10">
+                <h3 className="mb-4 text-xl font-semibold text-white">
+                  Key Contributions
+                </h3>
+
+                <ul className="space-y-4">
+                  {experience.details.achievements.map((achievement) => (
+                    <li
+                      key={achievement}
+                      className="flex gap-4"
+                    >
+                      <span className="mt-3 h-2 w-2 rounded-full bg-[#ED254E]" />
+
+                      <p className="leading-7 text-white/75">
+                        {achievement}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Technologies */}
+
+              <section className="mt-10">
+                <h3 className="mb-5 text-xl font-semibold text-white">
+                  Technologies
+                </h3>
+
+                <div className="flex flex-wrap gap-3">
+                  {experience.details.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="
+                        rounded-full
+                        border
+                        border-[#ED254E]/40
+                        bg-[#ED254E]/10
+                        px-4
+                        py-2
+                        text-sm
+                        text-white
+                      "
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </section>
+            </motion.div>
+          </motion.div>
         )}
-      </div>
-
-      {/* Date */}
-
-      <div className="mb-3 flex items-center gap-2 font-[var(--font-doodle)] text-xl text-[#ED254E]">
-        <Calendar size={18} />
-        {experience.period}
-      </div>
-
-      {/* Role */}
-
-      <h3 className="font-[var(--font-display)] text-2xl font-bold text-white">
-        {experience.role}
-      </h3>
-
-      {/* Company */}
-
-      <div className="mt-2 flex items-center gap-2 text-white/70">
-        <MapPin size={16} />
-
-        <span className="text-sm">
-          {experience.company} • {experience.location}
-        </span>
-      </div>
-
-      {/* Description */}
-
-      <ul className="mt-6 space-y-3">
-        {experience.description.map((item) => (
-          <li
-            key={item}
-            className="flex gap-3 text-sm leading-7 text-white/75"
-          >
-            <span className="mt-[10px] h-2 w-2 flex-shrink-0 rounded-full bg-[#ED254E]" />
-
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Tech Stack */}
-
-      <div className="mt-8 flex flex-wrap gap-2">
-        {experience.technologies.map((tech) => (
-          <motion.span
-            key={tech}
-            whileHover={{
-              scale: 1.05,
-              rotate: -2,
-            }}
-            className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:border-[#ED254E] hover:bg-[#ED254E]"
-          >
-            {tech}
-          </motion.span>
-        ))}
-      </div>
-
-      {/* Decorative Gradient */}
-
-      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-[#ED254E]/0 via-transparent to-[#ED254E]/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-    </motion.article>
+      </AnimatePresence>
+    </>
   );
 }

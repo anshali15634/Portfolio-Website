@@ -1,147 +1,212 @@
 export interface Experience {
   id: number;
+
+  role: string;
   company: string;
   logo: string;
   location: string;
-  role: string;
-  period: string;
-  description: string[];
-  technologies: string[];
+
+  startDate: string;
+  endDate: string;
+  duration: string;
+
+  featured?: boolean;
   website?: string;
+
+  summary: string;
+
+  details: {
+    overview: string;
+    achievements: string[];
+    technologies: string[];
+  };
 }
 
 export const experiences: Experience[] = [
   {
-    id: 1,
-    company: "University of Nottingham Malaysia",
-    logo: "/images/universityofnottingham.png",
-    location: "Remote",
-    role: "Computer Vision Research Intern",
-    period: "Jun 2024 – Aug 2024",
+    id: 5,
 
-    description: [
-      "Developed a semi-automatic video object segmentation framework combining Intelligent Scissors, CONDENSATION tracking, and graph-based optimisation.",
-      "Applied shortest-path algorithms, probabilistic tracking and image processing techniques to improve segmentation quality.",
-      "Optimised segmentation performance through algorithm refinement and evaluation on benchmark datasets.",
-    ],
+    role: "Backend Engineer Intern (Data & AI Team)",
+    company: "Tech Unicorn",
+    logo: "/images/techunicorn.png",
+    location: "Dubai, UAE",
 
-    technologies: [
-      "Python",
-      "OpenCV",
-      "Computer Vision",
-      "Graph Theory",
-      "Image Processing",
-    ],
+    startDate: "Oct 2025",
+    endDate: "Dec 2025",
+    duration: "3 months",
 
-    website: "https://www.nottingham.edu.my",
-  },
+    featured: true,
 
-  {
-    id: 2,
-    company: "University of Nottingham Malaysia",
-    logo: "/images/universityofnottingham.png",
-    location: "Remote",
-    role: "Machine Learning Research Assistant",
-    period: "Jul 2024 – Sep 2024",
+    summary:
+      "Built enterprise AI solutions using RAG, OCR, Azure AI and LLMs.",
 
-    description: [
-      "Conducted EEG signal processing and feature engineering for driver fatigue detection.",
-      "Built multiple machine learning models using frequency-domain features, improving prediction accuracy beyond 90%.",
-      "Co-authored an IEEE conference publication as second author.",
-    ],
+    details: {
+      overview:
+        "Worked within the Data & AI team to design and develop enterprise AI solutions for legal and financial clients. Collaborated with solution architects, backend engineers and client-facing teams to deliver production-ready AI applications.",
 
-    technologies: [
-      "Python",
-      "Machine Learning",
-      "EEG",
-      "NumPy",
-      "pandas",
-      "scikit-learn",
-    ],
+      achievements: [
+        "Developed multilingual Retrieval-Augmented Generation (RAG) applications for enterprise legal and financial clients.",
+        "Built intelligent document processing pipelines combining OCR, document classification and entity extraction.",
+        "Created reusable AI frameworks that accelerated development across multiple internal projects.",
+        "Developed a real-time AI digital persona integrating OpenAI models with Soul Machines.",
+        "Collaborated with cross-functional teams to deploy scalable AI solutions."
+      ],
 
-    website: "https://www.nottingham.edu.my",
-  },
-
-  {
-    id: 3,
-    company: "University of Nottingham Malaysia",
-    logo: "/images/universityofnottingham.png",
-    location: "Remote",
-    role: "Machine Learning Research Intern",
-    period: "Jun 2025 – Aug 2025",
-
-    description: [
-      "Designed a dual-branched attention-based LSTM architecture for ETF price forecasting.",
-      "Integrated macroeconomic indicators with historical market data to improve forecasting performance.",
-      "Improved R² by approximately 7% while significantly reducing prediction error.",
-      "Co-authored an academic manuscript currently under submission.",
-    ],
-
-    technologies: [
-      "Python",
-      "PyTorch",
-      "LSTM",
-      "Attention",
-      "Time Series",
-      "Deep Learning",
-    ],
-
-    website: "https://www.nottingham.edu.my",
+      technologies: [
+        "Python",
+        ".NET",
+        "Azure AI",
+        "Azure AI Search",
+        "LangChain",
+        "LangGraph",
+        "OpenAI",
+        "RAG",
+        "OCR"
+      ]
+    }
   },
 
   {
     id: 4,
+
+    role: "Computer Vision Research Intern",
     company: "University of Nottingham Malaysia",
     logo: "/images/universityofnottingham.png",
-    location: "Remote",
-    role: "Computer Vision Research Intern",
-    period: "Jun 2025 – Nov 2025",
+    location: "Malaysia",
 
-    description: [
-      "Designed a custom tri-branch autoencoder architecture for germinating oil palm seed classification.",
-      "Investigated augmentation strategies, loss functions and transfer learning approaches.",
-      "Achieved approximately 81% classification accuracy on a proprietary agricultural dataset.",
-    ],
+    startDate: "Jun 2025",
+    endDate: "Nov 2025",
+    duration: "6 months",
 
-    technologies: [
-      "PyTorch",
-      "Computer Vision",
-      "Autoencoder",
-      "Transfer Learning",
-      "Deep Learning",
-    ],
+    summary:
+      "Developed deep learning models for oil palm seed germination classification.",
 
-    website: "https://www.nottingham.edu.my",
+    details: {
+      overview:
+        "Conducted computer vision research focusing on automated classification of germinating oil palm seeds using deep learning and representation learning techniques.",
+
+      achievements: [
+        "Designed a custom tri-branch autoencoder architecture for germinating oil palm seed classification.",
+        "Investigated transfer learning, augmentation strategies and reconstruction-based feature learning.",
+        "Achieved approximately 81% classification accuracy on a proprietary agricultural dataset."
+      ],
+
+      technologies: [
+        "Python",
+        "PyTorch",
+        "Computer Vision",
+        "Autoencoder",
+        "Transfer Learning",
+        "Deep Learning"
+      ]
+    }
   },
 
   {
-    id: 5,
-    company: "Tech Unicorn",
-    logo: "/images/techunicorn.png",
-    location: "Dubai, UAE",
-    role: "Backend Engineer Intern (Data & AI Team)",
-    period: "Oct 2025 – Dec 2025",
+    id: 3,
 
-    description: [
-      "Developed multilingual Retrieval-Augmented Generation (RAG) applications for enterprise legal and financial clients.",
-      "Built intelligent document processing pipelines combining OCR, document classification and entity extraction.",
-      "Created reusable AI frameworks to accelerate internal project delivery across multiple client engagements.",
-      "Developed a real-time AI digital persona integrating OpenAI models with Soul Machines.",
-      "Collaborated with solution architects, backend engineers and client-facing teams to deploy production-ready AI systems.",
-    ],
+    role: "Machine Learning Research Intern",
+    company: "University of Nottingham Malaysia",
+    logo: "/images/universityofnottingham.png",
+    location: "Malaysia",
 
-    technologies: [
-      "Python",
-      ".NET",
-      "Azure AI",
-      "Azure AI Search",
-      "RAG",
-      "LangChain",
-      "LangGraph",
-      "OpenAI",
-      "OCR",
-    ],
+    startDate: "Jun 2025",
+    endDate: "Aug 2025",
+    duration: "3 months",
 
-    website: "https://techunicorn.ai",
+    summary:
+      "Built attention-based LSTM models for ETF price forecasting.",
+
+    details: {
+      overview:
+        "Conducted financial time-series forecasting research using deep learning architectures that integrated historical market data with macroeconomic indicators.",
+
+      achievements: [
+        "Designed a dual-branched attention-based LSTM architecture.",
+        "Integrated macroeconomic indicators with historical financial data.",
+        "Improved prediction performance by approximately 7% in R².",
+        "Co-authored an academic manuscript currently under submission."
+      ],
+
+      technologies: [
+        "Python",
+        "PyTorch",
+        "LSTM",
+        "Attention",
+        "Time Series",
+        "Deep Learning"
+      ]
+    }
   },
+
+  {
+    id: 2,
+
+    role: "Machine Learning Research Assistant",
+    company: "University of Nottingham Malaysia",
+    logo: "/images/universityofnottingham.png",
+    location: "Malaysia",
+
+    startDate: "Jul 2024",
+    endDate: "Sep 2024",
+    duration: "3 months",
+
+    summary:
+      "Applied machine learning to EEG-based driver fatigue detection.",
+
+    details: {
+      overview:
+        "Performed EEG signal processing and developed machine learning models for driver fatigue detection as part of an academic research project.",
+
+      achievements: [
+        "Conducted EEG preprocessing and feature engineering.",
+        "Developed multiple machine learning models achieving over 90% prediction accuracy.",
+        "Published the research as second author in an IEEE conference paper."
+      ],
+
+      technologies: [
+        "Python",
+        "Machine Learning",
+        "EEG",
+        "Signal Processing",
+        "NumPy",
+        "scikit-learn"
+      ]
+    }
+  },
+
+  {
+    id: 1,
+
+    role: "Computer Vision Research Intern",
+    company: "University of Nottingham Malaysia",
+    logo: "/images/universityofnottingham.png",
+    location: "Malaysia",
+
+    startDate: "Jun 2024",
+    endDate: "Aug 2024",
+    duration: "3 months",
+
+    summary:
+      "Developed semi-automatic video object segmentation algorithms.",
+
+    details: {
+      overview:
+        "Conducted research on interactive video object segmentation by combining graph-based optimisation with probabilistic object tracking.",
+
+      achievements: [
+        "Developed a semi-automatic video object segmentation framework.",
+        "Combined Intelligent Scissors, CONDENSATION tracking and graph optimisation.",
+        "Improved segmentation accuracy through algorithm optimisation and benchmarking."
+      ],
+
+      technologies: [
+        "Python",
+        "OpenCV",
+        "Computer Vision",
+        "Image Processing",
+        "Graph Optimisation"
+      ]
+    }
+  }
 ];
