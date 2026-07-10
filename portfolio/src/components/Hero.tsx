@@ -98,7 +98,7 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-8 max-w-xl text-lg leading-8 text-muted"
+              className="mt-8 max-w-xl text-lg leading-8 text-muted font-[var(--font-handwriting)] text-xl"
             >
               First-Class Honours Computer Science with AI graduate
               passionate about building intelligent systems using{" "}

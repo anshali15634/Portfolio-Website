@@ -2,91 +2,87 @@
 
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import Carousel, { CarouselItem } from "@/components/ui/carousel";
 import { certifications } from "@/data/certifications";
-import { cn } from "@/lib/utils";
-
-const CertificateHeader = ({
-  logo,
-  issuer,
-  courseDescription,
-}: {
-  logo: string;
-  issuer: string;
-  courseDescription: string;
-}) => (
-  <div className="flex flex-col w-full rounded-xl bg-[#ED254E]/[0.06] p-4">
-    <div className="relative w-10 h-10 shrink-0 transition-transform duration-300 group-hover/bento:scale-110">
-      <Image
-        src={logo}
-        alt={`${issuer} logo`}
-        fill
-        sizes="40px"
-        className="object-contain object-left"
-      />
-    </div>
-
-    <p className="mt-3 text-xs leading-relaxed text-[#334155]">
-      {courseDescription}
-    </p>
-  </div>
-);
 
 export default function Certifications() {
+  const items: CarouselItem[] = certifications.map((cert) => ({
+    id: cert.id,
+    title: cert.title,
+    icon: (
+      <div className="relative w-10 h-10">
+        <Image
+          src={cert.logo}
+          alt={`${cert.issuer} logo`}
+          fill
+          sizes="40px"
+          className="object-contain object-left"
+        />
+      </div>
+    ),
+    description: (
+      <div className="flex flex-col gap-3">
+        <p className="text-[#4b5563]">
+          {cert.courseDescription}
+        </p>
+
+        <span className="text-xs text-[#4b5563]">
+          {cert.issuer} &middot; {cert.issueDate}
+        </span>
+
+        {cert.certificateUrl ? (
+          <a
+            href={cert.certificateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[#ED254E]/30 px-3 py-1.5 text-xs font-medium text-[#ED254E] transition-colors duration-300 hover:bg-[#ED254E] hover:text-white"
+          >
+            View Certificate
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        ) : (
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[rgba(1,25,54,.1)] px-3 py-1.5 text-xs font-medium text-[#94a3b8] cursor-not-allowed">
+            Certificate coming soon
+          </span>
+        )}
+      </div>
+    ),
+  }));
+
   return (
     <section
       id="certifications"
       className="grid-background relative overflow-hidden py-20"
     >
       <div className="container-custom">
-        <h2 className="text-3xl font-bold tracking-tight text-[#011936] sm:text-4xl">
-          Certifications
-        </h2>
-        <p className="mt-3 max-w-xl text-[#4b5563]">
-          Credentials I&apos;ve earned along the way
-        </p>
+        <div className="grid gap-12 lg:grid-cols-[45%_55%] lg:items-center">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-[#011936] sm:text-4xl">
+              Certifications
+            </h2>
 
-        <div className="mt-12">
-          <BentoGrid>
-            {certifications.map((cert) => (
-              <BentoGridItem
-                key={cert.id}
-                className={cn(cert.featured && "md:col-span-2")}
-                header={
-                  <CertificateHeader
-                    logo={cert.logo}
-                    issuer={cert.issuer}
-                    courseDescription={cert.courseDescription}
-                  />
-                }
-                title={cert.title}
-                description={
-                  <div className="flex flex-col gap-3">
-                    <span className="text-[#4b5563]">
-                      {cert.issuer} &middot; {cert.issueDate}
-                    </span>
+            <p className="mt-3 max-w-xl text-muted">
+              As an aspiring AI engineer, I am deeply passionate about
+              exploring the latest advancements in artificial intelligence
+              and machine learning. I actively pursue industry-recognized
+              certifications to strengthen my skills, stay ahead of emerging
+              technologies, and ensure I can contribute meaningfully to
+              innovative AI solutions.
+            </p>
+          </div>
 
-                    {cert.certificateUrl ? (
-                      <a
-                        href={cert.certificateUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 w-fit rounded-full border border-[#ED254E]/30 px-3 py-1.5 text-xs font-medium text-[#ED254E] hover:bg-[#ED254E] hover:text-white transition-colors duration-300"
-                      >
-                        View Certificate
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 w-fit rounded-full border border-[rgba(1,25,54,.1)] px-3 py-1.5 text-xs font-medium text-[#94a3b8] cursor-not-allowed">
-                        Certificate coming soon
-                      </span>
-                    )}
-                  </div>
-                }
-              />
-            ))}
-          </BentoGrid>
+          <div className="flex justify-center lg:justify-end">
+            <Carousel
+              className="w-full max-w-[560px]"
+              items={items}
+              baseWidth={560}
+              autoplay
+              autoplayDelay={4500}
+              pauseOnHover
+              loop
+            />
+          </div>
         </div>
       </div>
     </section>

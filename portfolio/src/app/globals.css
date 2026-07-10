@@ -16,7 +16,7 @@
   --paper: #fcfcfb;
 
   --ink: #0c1420;
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(57.951% 0.00007 271.152);
 
   --line: rgba(1, 25, 54, 0.08);
   --line-strong: rgba(1, 25, 54, 0.16);
@@ -145,6 +145,10 @@ h5 {
 
 .doodle-font {
   font-family: var(--font-doodle);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
 }
 
 /* ======================================================

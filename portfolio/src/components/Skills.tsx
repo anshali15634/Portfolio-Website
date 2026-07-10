@@ -255,39 +255,6 @@ export default function Skills() {
           ))}
         </motion.div>
 
-        {/* Bottom Highlight */}
-
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-          }}
-          className="mt-24 rounded-3xl border border-white/10 bg-white/5 p-10 text-center"
-        >
-          <p className="font-[var(--font-doodle)] text-3xl text-[#ED254E]">
-            Currently Learning
-          </p>
-
-          <h3 className="mt-3 text-3xl font-bold">
-            Building the next generation of AI agents
-          </h3>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/70">
-            My current focus is on agent orchestration, Model Context Protocol
-            (MCP), multi-agent systems, advanced Retrieval-Augmented Generation,
-            autonomous workflows, and production-ready AI architectures using
-            the latest LLM ecosystems.
-          </p>
-        </motion.div>
-
       </div>
     </section>
   );

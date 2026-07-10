@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Caveat, Geist } from "next/font/google";
+import { Space_Grotesk, Inter, Caveat, Geist, Covered_By_Your_Grace } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+const coveredByYourGrace = Covered_By_Your_Grace({
+  subsets: ["latin"],
+  weight: "400", // this font only ships a 400 weight
+  variable: "--font-handwriting",
+  display: "swap",
+});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -79,6 +86,7 @@ export default function RootLayout({
           ${spaceGrotesk.variable}
           ${inter.variable}
           ${caveat.variable}
+          ${coveredByYourGrace.variable}
         `}
       >
         {children}
