@@ -123,7 +123,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="https://github.com/YOUR_USERNAME"
+              href="https://github.com/anshali15634"
               target="_blank"
               aria-label="Github"
             >
@@ -134,7 +134,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="https://linkedin.com/in/YOUR_USERNAME"
+              href="https://www.linkedin.com/in/anshali-manoharan-524830311/"
               target="_blank"
               aria-label="LinkedIn"
             >

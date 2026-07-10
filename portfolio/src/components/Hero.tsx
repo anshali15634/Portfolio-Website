@@ -147,7 +147,7 @@ export default function Hero() {
               className="mt-12 flex flex-wrap gap-5"
             >
               <Link
-                href="#projects"
+                href="#Projects"
                 className="group btn-primary flex items-center gap-2"
               >
                 View Projects

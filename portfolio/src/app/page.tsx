@@ -5,14 +5,16 @@ import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Awards from "@/components/Awards";
+import Cursor from "@/components/Cursor";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 // import Publications from "@/components/Publications";
 import Certifications from "@/components/Certifications";
-// import Contact from "@/components/Contact";
-// import Footer from "@/components/Footer";
 
 export default function HomePage() {
   return (
     <>
+      <Cursor />
       <Navbar />
 
       <main>
@@ -27,13 +29,14 @@ export default function HomePage() {
         <Projects />
 
         <Awards />
+
+        <Contact />
 {/*
         <Publications />
-
-        <Contact /> */}
+*/}
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
