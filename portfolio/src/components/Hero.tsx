@@ -63,7 +63,7 @@ export default function Hero() {
               variants={item}
               className="leading-none text-[3.3rem] font-bold tracking-tight text-[#011936] sm:text-7xl"
             >
-              Building things
+               Building things
               <br />
 
               <span className="relative inline-block">
@@ -100,8 +100,8 @@ export default function Hero() {
               variants={item}
               className="mt-8 max-w-xl text-lg leading-8 text-muted font-[var(--font-handwriting)] text-xl"
             >
-              First-Class Honours Computer Science with AI graduate
-              passionate about building intelligent systems using{" "}
+              First-Class Honours graduate in Computer Science with AI.
+              Passionate about building intelligent systems using{" "}
               <span className="font-semibold text-[#011936]">
                 NLP
               </span>
@@ -117,7 +117,7 @@ export default function Hero() {
               <span className="font-semibold text-[#011936]">
                 Agentic AI
               </span>
-              .
+              . In my free time, I enjoy making animations with Python (˶ᵔ ᵕ ᵔ˶)
             </motion.p>
 
             {/* Skill Pills */}
@@ -182,14 +182,13 @@ export default function Hero() {
               duration: 0.8,
               delay: 0.3,
             }}
-            className="relative flex justify-center"
+            className="relative flex justify-center lg:justify-start"
           >
             {/* Floating doodle image */}
 
             <motion.div
               animate={{
                 y: [0, -18, 0],
-                rotate: [-1, 1, -1],
               }}
               transition={{
                 duration: 5,
@@ -198,12 +197,12 @@ export default function Hero() {
               }}
             >
               <Image
-                src="/images/me.png"
+                src="/images/fina2.gif"
                 alt="Anshali Manoharan"
                 width={1030}
                 height={1030}
                 priority
-                className="h-auto w-[450px] sm:w-[600px] lg:w-[750px] select-none"
+                className="h-auto w-full max-w-[1050px] select-none"
               />
             </motion.div>
           </motion.div>
