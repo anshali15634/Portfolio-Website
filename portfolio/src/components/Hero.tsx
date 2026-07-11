@@ -61,7 +61,7 @@ export default function Hero() {
 
             <motion.h1
               variants={item}
-              className="leading-none text-[3.3rem] font-bold tracking-tight text-[#011936] sm:text-7xl"
+              className="leading-none text-[3.3rem] font-bold tracking-tight text-[#011936] sm:text-5xl"
             >
                Building things
               <br />
@@ -98,7 +98,7 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-8 max-w-xl text-lg leading-8 text-muted font-[var(--font-handwriting)] text-xl"
+              className="mt-8 max-w-xl text-lg leading-8 text-muted font-[var(--font-handwriting)] text-5sm"
             >
               First-Class Honours graduate in Computer Science with AI.
               Passionate about building intelligent systems using{" "}
@@ -117,7 +117,7 @@ export default function Hero() {
               <span className="font-semibold text-[#011936]">
                 Agentic AI
               </span>
-              . In my free time, I enjoy making animations with Python (˶ᵔ ᵕ ᵔ˶)
+              .
             </motion.p>
 
             {/* Skill Pills */}
