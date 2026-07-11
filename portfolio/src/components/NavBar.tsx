@@ -9,10 +9,11 @@ import { FaLinkedin } from "react-icons/fa";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Recognition", href: "#recognition" },
+  { label: "Awards", href: "#awards" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -21,30 +22,34 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  useEffect(() => {
+useEffect(() => {
+    const sections = navLinks
+      .map((item) => document.querySelector(item.href) as HTMLElement | null)
+      .filter(Boolean) as HTMLElement[];
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = navLinks.map((item) =>
-        document.querySelector(item.href)
-      );
+      const scrollPosition = window.scrollY + 120; // Navbar offset
 
-      sections.forEach((section) => {
-        if (!section) return;
+      let currentSection = navLinks[0].href;
 
-        const rect = section.getBoundingClientRect();
-
-        if (rect.top <= 140 && rect.bottom >= 140) {
-          setActiveSection(`#${section.id}`);
+      for (const section of sections) {
+        if (scrollPosition >= section.offsetTop) {
+          currentSection = `#${section.id}`;
         }
-      });
+      }
+
+      setActiveSection(currentSection);
     };
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -87,7 +92,7 @@ export default function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`relative text-sm font-medium transition-colors duration-300 ${
+                    className={`group relative text-sm font-medium transition-colors duration-300 ${
                       activeSection === item.href
                         ? "text-[#ED254E]"
                         : "text-[#011936] hover:text-[#ED254E]"
@@ -95,13 +100,21 @@ export default function Navbar() {
                   >
                     {item.label}
 
-                    <span
-                      className={`absolute -bottom-2 left-0 h-[2px] bg-[#ED254E] transition-all duration-300 ${
-                        activeSection === item.href
-                          ? "w-full"
-                          : "w-0 group-hover:w-full"
-                      }`}
-                    />
+                    <>
+                    {activeSection === item.href && (
+                      <motion.span
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-2 left-0 h-[2px] w-full bg-[#ED254E]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 450,
+                          damping: 35,
+                        }}
+                      />
+                    )}
+
+                    <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-[#ED254E] transition-all duration-300 group-hover:w-full" />
+                  </>
                   </Link>
                 </li>
               ))}
@@ -196,7 +209,11 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-[var(--font-display)] text-3xl font-semibold hover:text-[#ED254E]"
+                  className={`font-[var(--font-display)] text-3xl font-semibold transition-colors duration-300 ${
+                    activeSection === item.href
+                      ? "text-[#ED254E]"
+                      : "text-[#011936] hover:text-[#ED254E]"
+                  }`}
                 >
                   {item.label}
                 </Link>

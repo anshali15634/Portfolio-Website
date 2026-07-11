@@ -18,9 +18,9 @@ export default function ProjectCard({ project }: Props) {
       transition={{
         duration: 0.25,
       }}
-      className="mx-auto w-full max-w-3xl overflow-hidden rounded-[36px] border border-[#011936]/10 bg-white shadow-[0_20px_60px_rgba(1,25,54,0.08)]"
+      className="mx-auto w-full max-w-6xl overflow-hidden rounded-[36px] border border-[#011936]/10 bg-white shadow-[0_20px_60px_rgba(1,25,54,0.08)]"
     >
-      <div className="grid lg:grid-cols-[45%_55%]">
+      <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
         {/* Image */}
 
         <div className="relative overflow-hidden bg-[#f8fafc]">
@@ -37,14 +37,14 @@ export default function ProjectCard({ project }: Props) {
               alt={project.project_name}
               width={1200}
               height={900}
-              className="aspect-video h-full w-full object-cover lg:min-h-[520px]"
+              className="h-full w-full object-cover lg:min-h-[520px]"
             />
           </motion.div>
         </div>
 
         {/* Content */}
 
-        <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-12">
+        <div className="flex flex-col justify-between p-8 sm:p-10 lg:px-12 lg:py-10 xl:px-14 xl:py-12">
           <div>
             <span className="font-[var(--font-handwriting)] text-xl text-[#ED254E]">
               {project.startDate} — {project.endDate}

@@ -16,7 +16,7 @@ export const projects: Project[] = [
   endDate: "Jun 2026",
   summary: "End-to-end sustainability analytics platform built with Next.js, TypeScript, Python, FastAPI, and Gemini for evaluating EV battery recycling versus reuse trade-offs. Features a guided 6-stage workflow with automated cascading calculations and an AI analyst chat agent grounded in user data. Built solo across full-stack UI, state management, API, and LLM integration.",
   project_link:"",
-  image: "/images/TOOLBOX.png"
+  image: "/images/analyst_proj.png"
 },
 {
   id: 2,
