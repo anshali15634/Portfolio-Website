@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Calendar, MapPin, ArrowRight } from "lucide-react";
@@ -16,28 +16,31 @@ export default function ExperienceCard({
   index,
 }: ExperienceCardProps) {
   const [open, setOpen] = useState(false);
-
-  // Prevent page scrolling while modal is open
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [open]);
+  const scrollPosition = useRef({ x: 0, y: 0 });
 
   // Close modal with Escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-      }
+  useLayoutEffect(() => {
+    if (open) {
+      scrollPosition.current = {
+        x: window.scrollX,
+        y: window.scrollY,
+      };
+
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+
+      window.scrollTo({
+        top: scrollPosition.current.y,
+        left: scrollPosition.current.x,
+        behavior: "auto",
+      });
+    }
+
+    return () => {
+      document.body.style.overflow = "";
     };
-
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [open]);
 
   return (
     <>
@@ -172,147 +175,138 @@ export default function ExperienceCard({
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-6 backdrop-blur-md"
+            className="fixed inset-0 z-[9999] bg-black/10 p-4 backdrop-blur-sm sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
           >
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 40,
-                scale: 0.96,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                y: 40,
-                scale: 0.96,
-              }}
-              transition={{
-                duration: 0.25,
-              }}
-              onClick={(e) => e.stopPropagation()}
-              className="
-                relative
-                max-h-[90vh]
-                w-full
-                max-w-3xl
-                overflow-y-auto
-                rounded-3xl
-                border
-                border-[#ED254E]/30
-                bg-[#011936]
-                p-10
-                shadow-2xl
-              "
-            >
-              {/* Close */}
-
-              <button
-                onClick={() => setOpen(false)}
-                className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition hover:bg-[#ED254E]"
+            <div className="flex h-full justify-center overflow-hidden pt-8">
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                  scale: 0.96,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: 40,
+                  scale: 0.96,
+                }}
+                transition={{
+                  duration: 0.25,
+                }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-3xl h-[90vh] overflow-y-auto overscroll-contain rounded-[2rem] border border-white/10 bg-slate-950/80 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_30px_120px_rgba(1,25,54,0.8)] ring-1 ring-[#ED254E]/20"
               >
-                <X size={18} />
-              </button>
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-r from-[#ED254E]/20 via-transparent to-[#5CC8FF]/15" />
+                <div className="pointer-events-none absolute -left-20 top-16 h-48 w-48 rounded-full bg-[#ED254E]/20 blur-3xl" />
+                <div className="pointer-events-none absolute bottom-0 right-0 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl" />
 
-              {/* Header */}
+                {/* Close */}
 
-              <div className="flex items-center gap-6">
-                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white p-4">
-                  <Image
-                    src={experience.logo}
-                    alt={experience.company}
-                    width={70}
-                    height={70}
-                    className="object-contain"
-                  />
-                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:border-[#ED254E] hover:bg-[#ED254E] hover:text-white"
+                >
+                  <X size={18} />
+                </button>
 
-                <div>
-                  <p className="font-[var(--font-doodle)] text-2xl text-[#ED254E]">
-                    {experience.company}
-                  </p>
+                <div className="relative px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+                  {/* Header */}
 
-                  <h2 className="mt-2 text-3xl font-bold text-white">
-                    {experience.role}
-                  </h2>
+                  <div className="flex flex-col gap-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5 shadow-inner shadow-black/20 sm:flex-row sm:items-center sm:p-6">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white p-4 shadow-lg shadow-black/20">
+                      <Image
+                        src={experience.logo}
+                        alt={experience.company}
+                        width={70}
+                        height={70}
+                        className="object-contain"
+                      />
+                    </div>
 
-                  <p className="mt-3 text-white/60">
-                    {experience.startDate} – {experience.endDate} •{" "}
-                    {experience.location}
-                  </p>
-                </div>
-              </div>
-
-              {/* Overview */}
-
-              <section className="mt-10">
-                <h3 className="mb-4 text-xl font-semibold text-white">
-                  Overview
-                </h3>
-
-                <p className="leading-8 text-white/75">
-                  {experience.details.overview}
-                </p>
-              </section>
-
-              {/* Achievements */}
-
-              <section className="mt-10">
-                <h3 className="mb-4 text-xl font-semibold text-white">
-                  Key Contributions
-                </h3>
-
-                <ul className="space-y-4">
-                  {experience.details.achievements.map((achievement) => (
-                    <li
-                      key={achievement}
-                      className="flex gap-4"
-                    >
-                      <span className="mt-3 h-2 w-2 rounded-full bg-[#ED254E]" />
-
-                      <p className="leading-7 text-white/75">
-                        {achievement}
+                    <div>
+                      <p className="font-[var(--font-doodle)] text-2xl text-[#ED254E]">
+                        {experience.company}
                       </p>
-                    </li>
-                  ))}
-                </ul>
-              </section>
 
-              {/* Technologies */}
+                      <h2 className="mt-2 text-3xl font-bold text-white">
+                        {experience.role}
+                      </h2>
 
-              <section className="mt-10">
-                <h3 className="mb-5 text-xl font-semibold text-white">
-                  Technologies
-                </h3>
+                      <p className="mt-3 text-white/60">
+                        {experience.startDate} – {experience.endDate} •{" "}
+                        {experience.location}
+                      </p>
+                    </div>
+                  </div>
 
-                <div className="flex flex-wrap gap-3">
-                  {experience.details.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="
-                        rounded-full
-                        border
-                        border-[#ED254E]/40
-                        bg-[#ED254E]/10
-                        px-4
-                        py-2
-                        text-sm
-                        text-white
-                      "
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {/* Overview */}
+
+                  <section className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-900/60 p-6">
+                    <h3 className="mb-4 text-xl font-semibold text-white">
+                      Overview
+                    </h3>
+
+                    <p className="leading-8 text-white/75">
+                      {experience.details.overview}
+                    </p>
+                  </section>
+
+                  <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+                    {/* Achievements */}
+
+                    <section className="rounded-[1.5rem] border border-white/10 bg-slate-900/60 p-6">
+                      <h3 className="mb-5 text-xl font-semibold text-white">
+                        Key Contributions
+                      </h3>
+
+                      <ul className="space-y-4">
+                        {experience.details.achievements.map((achievement) => (
+                          <li
+                            key={achievement}
+                            className="flex gap-4"
+                          >
+                            <span className="mt-2 flex h-8 w-8 flex-none items-center justify-center rounded-full bg-[#ED254E]/15 text-[#ED254E]">
+                              •
+                            </span>
+
+                            <p className="leading-7 text-white/75">
+                              {achievement}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+
+                    {/* Technologies */}
+
+                    <section className="rounded-[1.5rem] border border-white/10 bg-slate-900/60 p-6">
+                      <h3 className="mb-5 text-xl font-semibold text-white">
+                        Technologies
+                      </h3>
+
+                      <div className="flex flex-wrap gap-3">
+                        {experience.details.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full border border-[#ED254E]/30 bg-gradient-to-r from-[#ED254E]/15 to-cyan-400/10 px-4 py-2 text-sm text-white/90"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
                 </div>
-              </section>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
