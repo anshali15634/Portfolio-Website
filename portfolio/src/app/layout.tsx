@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Caveat, Geist, Covered_By_Your_Grace } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { MotionConfig } from "framer-motion";
+// import { MotionConfig } from "framer-motion";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -94,13 +94,13 @@ export default function RootLayout({
           ${coveredByYourGrace.variable}
         `}
       >
-        <MotionConfig
+        {/* <MotionConfig
           reducedMotion={
             process.env.NODE_ENV === "production" ? "user" : "never"
           }
         >
           {children}
-        </MotionConfig>
+        </MotionConfig> */}
       </body>
     </html>
   );
