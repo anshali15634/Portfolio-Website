@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Caveat, Geist, Covered_By_Your_Grace } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { MotionConfig } from "framer-motion";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -80,7 +81,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("font-sans", geist.variable)}
+    >
       <body
         className={`
           ${spaceGrotesk.variable}
@@ -89,7 +94,13 @@ export default function RootLayout({
           ${coveredByYourGrace.variable}
         `}
       >
-        {children}
+        <MotionConfig
+          reducedMotion={
+            process.env.NODE_ENV === "production" ? "user" : "never"
+          }
+        >
+          {children}
+        </MotionConfig>
       </body>
     </html>
   );
