@@ -82,7 +82,7 @@ export default function Carousel({
 
   return (
     <div
-      className={cn("relative w-full max-w-[560px]", className)}
+      className={cn("relative w-full max-w-[560px] px-1 sm:px-2 md:px-4", className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
