@@ -197,14 +197,7 @@ h5 {
 .container-custom {
   width: min(1280px, 100%);
   margin-inline: auto;
-  padding-inline: 6vw; /* ensure horizontal spacing on small screens */
-}
-
-@media (min-width: 1280px) {
-  /* remove the extra padding on very wide screens where the container has a fixed max width */
-  .container-custom {
-    padding-inline: 0;
-  }
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
 /* ======================================================
