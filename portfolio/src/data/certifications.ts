@@ -1,3 +1,4 @@
+// certifications.ts
 export interface Certification {
   id: number;
   title: string;
@@ -18,6 +19,7 @@ export const certifications: Certification[] = [
     issueDate: "June 2025",
     logo: "/images/datacamp.jpg",
     certificateUrl: "https://www.datacamp.com/completed/statement-of-accomplishment/track/1f22fb8b86e21803086c01095723293a9740683c",
+    featured: true,
   },
   {
     id: 2,
@@ -27,7 +29,6 @@ export const certifications: Certification[] = [
     issueDate: "Dec 2025",
     logo: "/images/microsoft.png",
     certificateUrl: "https://learn.microsoft.com/en-us/users/anshalimanoharan-5067/achievements/nmkr5qpf?ref=https%3A%2F%2Fwww.linkedin.com%2F",
-    featured: true,
   },
   {
     id: 3,
@@ -76,6 +77,7 @@ export const certifications: Certification[] = [
     issueDate: "Aug 2026",
     logo: "/images/linkedinlearn.png",
     certificateUrl: "https://www.linkedin.com/learning/certificates/fb86b60c7750b9bdd5432e13608d5649d426ddde47bf01f1564f91573cad6b83?trk=share_certificate",
+    featured: true,
   }
 
 ];
