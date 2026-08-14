@@ -56,7 +56,7 @@ export default function Certifications() {
       className="grid-background relative overflow-hidden py-20"
     >
       <div className="container-custom">
-        <div className="grid items-center gap-16 px-2 sm:px-4 lg:grid-cols-2 lg:px-0">
+        <div className="grid items-center gap-16 px-4 sm:px-4 lg:grid-cols-2 lg:px-0">
           <div className="pr-1 sm:pr-2">
             <h2 className="text-3xl font-bold tracking-tight text-[#011936] sm:text-4xl">
               Certifications
@@ -72,7 +72,7 @@ export default function Certifications() {
             </p>
           </div>
 
-          <div className="flex justify-center px-2 sm:px-4">
+          <div className="flex justify-center px-4 sm:px-4">
             <Carousel
               className="w-full max-w-[560px]"
               items={items}
