@@ -68,4 +68,14 @@ export const certifications: Certification[] = [
     logo: "/images/hackerrank_logo.jpg",
     certificateUrl: "https://www.hackerrank.com/certificates/9c81b075bb2a",
   },
+  {
+    id: 7,
+    title: "Creating Agentic AI Solutions with Microsoft Foundry",
+    courseDescription: "Taught how to design, build, deploy, orchestrate, and evaluate intelligent AI agents—including multi-agent workflows—using Microsoft Foundry, Foundry Agent Service, and the Microsoft Agent Framework.",
+    issuer: "LinkedIn Learning",
+    issueDate: "Aug 2026",
+    logo: "/images/linkedinlearn.png",
+    certificateUrl: "https://www.linkedin.com/learning/certificates/fb86b60c7750b9bdd5432e13608d5649d426ddde47bf01f1564f91573cad6b83?trk=share_certificate",
+  }
+
 ];
