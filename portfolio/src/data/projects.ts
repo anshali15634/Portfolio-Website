@@ -20,6 +20,15 @@ export const projects: Project[] = [
 },
 {
   id: 2,
+  project_name: "PR Intelligence & Media Monitoring Platform",
+  startDate: "Aug 2026",
+  endDate: "Aug 2026",
+  summary: "A full-stack application for monitoring and analyzing media coverage with AI-powered sentiment analysis. PR Intelligence helps track how specific topics are being reported across news outlets, providing sentiment analysis and media intelligence reports. Built using Nextjs, FireCrawl, Google Gemini. Deployed with Render and Vercel.",
+  project_link:"https://github.com/anshali15634/PR-Intelligence-and-Media-Monitoring-Platform",
+  image: "/images/PR-MONITORING.png"
+},
+{
+  id: 3,
   project_name: "AI Customer Agent for E-Commerce Platforms",
   startDate: "Apr 2026",
   endDate: "Apr 2026",
@@ -28,7 +37,7 @@ export const projects: Project[] = [
   image: "/images/bicycle.png"
 },
 {
-  id: 12,
+  id: 4,
   project_name: "Intelligent Workplace Safety Monitoring with PPE and Person Detection",
   startDate: "Jun 2026",
   endDate: "Jun 2026",
@@ -37,7 +46,7 @@ export const projects: Project[] = [
   image: "/images/PPE.png"
 },
 {
-  id: 3,
+  id: 5,
   project_name: "Fine Grained Image Classification for Germinated Seed Quality Estimation",
   startDate: "Jul 2025",
   endDate: "Jan 2026",
@@ -46,7 +55,7 @@ export const projects: Project[] = [
   image: "/images/SEED.png"
 },
 {
-  id: 4,
+  id: 6,
   project_name: "Financial Market Forecasting with Machine Learning and Macroeconomic Indicators",
   startDate: "Jun 22025",
   endDate: "Aug 2025",
@@ -55,7 +64,7 @@ export const projects: Project[] = [
   image: "/images/FINANCE.png"
 },
 {
-  id: 5,
+  id: 7,
   project_name: "Efficient Video Object Segmentation with Intelligent Scissors, CONDENSATION and CNN (Individual Dissertation)",
   startDate: "Sept 2024",
   endDate: "May 2025",
@@ -64,7 +73,7 @@ export const projects: Project[] = [
   image: "/images/dissertation.jpg"
 },
 {
-  id: 6,
+  id: 8,
   project_name: "Autonomous Robotic Systems - Evolving Policy Networks with Genetic Algorithms for Reinforcement Learning",
   startDate: "Sept 2024",
   endDate: "Dec 2024",
@@ -73,7 +82,7 @@ export const projects: Project[] = [
   image: "/images/GAMSM.png"
 },
 {
-  id: 7,
+  id: 9,
   project_name: "Driver Vigilance Detection using the SEEDVIG dataset - Performance Evaluation using AdaBoostM2, LSTM and RNN",
   startDate: "May 2024",
   endDate: "Sept 2024",
@@ -82,7 +91,7 @@ export const projects: Project[] = [
   image: "/images/PAPER.png"
 },
 {
-  id: 8,
+  id: 10,
   project_name: "AI-Powered Educational Tool - MetaCognify",
   startDate: "Jul 2024",
   endDate: "Aug 2024",
@@ -91,16 +100,16 @@ export const projects: Project[] = [
   image: "/images/metacognify.png"
 },
 {
-  id: 9,
+  id: 11,
   project_name: "AI-Powered Website and Mobile App for Stress Detection and Analysis: BrainZen",
-  startDate: "",
-  endDate: "",
+  startDate: "Sept 2023",
+  endDate: "May 2024",
   summary: "Year-long research project at the University of Nottingham classifying stress levels from EEG data using Logistic Regression and RNN models, deployed via a website and mobile app. As Lead Model Engineer, developed and optimized models for compatibility with Muse and Emotiv headsets. Coordinated platform testing to ensure seamless user interaction.",
   project_link:"https://github.com/anshali15634/EEG-Stress-Analysis-using-LR-and-RNN-Models",
   image: "/images/BRAINZEN.jpg"
 },
 {
-  id: 10,
+  id: 12,
   project_name: "Development of an Image Processing Pipeline for Flower Segmentation",
   startDate: "Jan 2024",
   endDate: "May 2024",
@@ -109,10 +118,10 @@ export const projects: Project[] = [
   image: "/images/FLOWER.png"
 },
 {
-  id: 11,
+  id: 13,
   project_name: "Grouping Genetic Algorithm with Controlled Gene Transmission: Java Implementation",
-  startDate: "",
-  endDate: "",
+  startDate: "Feb 2024",
+  endDate: "May 2024",
   summary: "Java implementation of the Grouping Genetic Algorithm with Controlled Gene Transmission (GGA-CGT) for the one-dimensional Bin Packing Problem, built from the original research paper. Developed from scratch for the Artificial Intelligence Methods module at the University of Nottingham. Tested on a smaller dataset, successfully replicating the expected results.",
   project_link:"https://github.com/anshali15634/GGA-CGT-Java-Implementation",
   image: "/images/GGACGT.png"
