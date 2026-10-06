@@ -78,6 +78,16 @@ export const certifications: Certification[] = [
     logo: "/images/linkedinlearn.png",
     certificateUrl: "https://www.linkedin.com/learning/certificates/fb86b60c7750b9bdd5432e13608d5649d426ddde47bf01f1564f91573cad6b83?trk=share_certificate",
     featured: true,
+  },
+  {
+    id: 8,
+    title: "Observability for AI Agents",
+    courseDescription: "Validates my understanding in the principles, challenges, and architectural patterns of observability for agentic AI systems. It recognizes my knowledge of the logs, metrics, and traces, and explore why AI agents demand a richer, more intentional approach to observability than traditional software systems.",
+    issuer: "MongoDB",
+    issueDate: "Oct 2026",
+    logo: "/images/mongodb.png",
+    certificateUrl: "https://www.credly.com/badges/2049fff5-4dc7-43dd-8c4e-1cac1bf14868/public_url",
+    featured: false,
   }
 
 ];
