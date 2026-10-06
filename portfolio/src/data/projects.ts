@@ -25,7 +25,7 @@ export const projects: Project[] = [
   endDate: "Aug 2026",
   summary: "A full-stack application for monitoring and analyzing media coverage with AI-powered sentiment analysis. PR Intelligence helps track how specific topics are being reported across news outlets, providing sentiment analysis and media intelligence reports. Built using Nextjs, FireCrawl, Google Gemini. Deployed with Render and Vercel.",
   project_link:"https://github.com/anshali15634/PR-Intelligence-and-Media-Monitoring-Platform",
-  image: "/images/PR-MONITORING.png"
+  image: "/images/pr.png"
 },
 {
   id: 3,
